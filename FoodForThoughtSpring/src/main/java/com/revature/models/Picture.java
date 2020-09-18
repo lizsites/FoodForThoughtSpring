@@ -15,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Component
 @Entity
 @Table(name="pictures")
 public class Picture {
@@ -31,6 +35,7 @@ public class Picture {
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 
 	public Picture(int id, byte[] image, User user) {

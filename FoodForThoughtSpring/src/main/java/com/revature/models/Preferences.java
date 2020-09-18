@@ -2,6 +2,11 @@ package com.revature.models;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Component
 @Entity
 @Table(name = "preferences")
 public class Preferences {
@@ -28,6 +33,7 @@ public class Preferences {
 	private int maxCalories;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "preference", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private User users;
 
 	public Preferences() {

@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Component
 @Entity 
 @Table (name ="steps")
 public class Steps {
@@ -23,29 +28,30 @@ public class Steps {
 		@Column(name = "body")
 		private String body;
 		
-		@Column(name ="order")
-		private int order;
+		@Column(name ="step_num")
+		private int stepNum;
 		
 		@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 		@JoinColumn(name="recipe_id")
+		@JsonBackReference
 		private Recipe recipe;
 
 		public Steps() {
 			super();
 		}
 
-		public Steps(int id, String body, int order, Recipe recipe) {
+		public Steps(int id, String body, int stepNum, Recipe recipe) {
 			super();
 			this.id = id;
 			this.body = body;
-			this.order = order;
+			this.stepNum = stepNum;
 			this.recipe = recipe;
 		}
 
-		public Steps(String body, int order, Recipe recipe) {
+		public Steps(String body, int stepNum, Recipe recipe) {
 			super();
 			this.body = body;
-			this.order = order;
+			this.stepNum = stepNum;
 			this.recipe = recipe;
 		}
 
@@ -55,8 +61,8 @@ public class Steps {
 			int result = 1;
 			result = prime * result + ((body == null) ? 0 : body.hashCode());
 			result = prime * result + id;
-			result = prime * result + order;
 			result = prime * result + ((recipe == null) ? 0 : recipe.hashCode());
+			result = prime * result + stepNum;
 			return result;
 		}
 
@@ -76,19 +82,19 @@ public class Steps {
 				return false;
 			if (id != other.id)
 				return false;
-			if (order != other.order)
-				return false;
 			if (recipe == null) {
 				if (other.recipe != null)
 					return false;
 			} else if (!recipe.equals(other.recipe))
+				return false;
+			if (stepNum != other.stepNum)
 				return false;
 			return true;
 		}
 
 		@Override
 		public String toString() {
-			return "Steps [id=" + id + ", body=" + body + ", order=" + order + ", recipe=" + recipe + "]";
+			return "Steps [id=" + id + ", body=" + body + ", stepNum=" + stepNum + ", recipe=" + recipe + "]";
 		}
 
 		public int getId() {
@@ -107,12 +113,12 @@ public class Steps {
 			this.body = body;
 		}
 
-		public int getOrder() {
-			return order;
+		public int getStepNum() {
+			return stepNum;
 		}
 
-		public void setOrder(int order) {
-			this.order = order;
+		public void setStepNum(int stepNum) {
+			this.stepNum = stepNum;
 		}
 
 		public Recipe getRecipe() {
@@ -122,5 +128,5 @@ public class Steps {
 		public void setRecipe(Recipe recipe) {
 			this.recipe = recipe;
 		}
-
+		
 }

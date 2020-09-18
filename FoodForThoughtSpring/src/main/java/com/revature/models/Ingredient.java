@@ -11,9 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Component
 @Entity
 @Table(name="ingredients")
 public class Ingredient {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ingredient_id")
@@ -25,6 +31,7 @@ public class Ingredient {
 	private int cals;
 	
 	@OneToMany(mappedBy="ingredient", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<RecipeIngredient> recipeIngredient;
 	
 	public Ingredient(int id, String name, int cals, List<RecipeIngredient> recipeIngredient) {

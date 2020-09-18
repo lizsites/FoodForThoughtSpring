@@ -14,6 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Component
 @Entity
 @Table(name="recipes")
 public class Recipe {
@@ -32,13 +37,16 @@ public class Recipe {
 	String title;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private List<RecipeIngredient> recipeIngredient;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User owner;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private List<Steps> recipeSteps;
 
 	public Recipe() {
