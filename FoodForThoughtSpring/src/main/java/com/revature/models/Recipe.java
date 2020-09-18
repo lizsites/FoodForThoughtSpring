@@ -37,7 +37,7 @@ public class Recipe {
 	String title;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
-	@JsonBackReference
+	
 	private List<RecipeIngredient> recipeIngredient;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -46,7 +46,7 @@ public class Recipe {
 	private User owner;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
-	@JsonBackReference
+	
 	private List<Steps> recipeSteps;
 
 	public Recipe() {

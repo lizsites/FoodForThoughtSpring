@@ -30,20 +30,20 @@ public class User {
 	@Column(name = "user_name", unique = true)
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "food_password")
 	private String password;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.ALL)
-	@JsonBackReference
+	
 	private List<Recipe> recipes;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-	@JsonBackReference
+	
 	private List<Picture> pictures;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "preference_id", nullable =false)
-	@JsonBackReference
+	@JoinColumn(name = "preference_id")
+	
 	private Preferences preference;
 
 	public User() {

@@ -1,60 +1,57 @@
 package com.revature.controllers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dao.UserDAO;
-import com.revature.dao.UserDAOImp;
+
+
 
 import com.revature.models.User;
 
 import com.revature.services.LoginService;
 
 @RestController
-@RequestMapping(path="/login")
 @CrossOrigin
+@ResponseBody
 public class LoginController {
 	
 	private LoginService ls;
 	//inject login service
-	
+	private HttpSession sesh;
 	@Autowired
-	public LoginController(LoginService ls) {
+	public LoginController(LoginService ls, HttpSession sesh) {
 		super();
 		this.ls = ls;
+		this.sesh = sesh;
 	}
 	
 	@PostMapping(path="/login")
-	public ResponseEntity<User> login(User u, HttpSession sesh) {	
-		
+	public ResponseEntity<User> login(@RequestBody User u) {	
+		System.out.println("User u being passed:" + u);
 		if (ls.login(u)) {
-			User f = ls.getUser(u.getUsername());
+			User f = ls.findUser(u.getUsername());
 			sesh.setAttribute("user", f);
 			sesh.setAttribute("loggedin" , true);
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(f);
+			return ResponseEntity.status(HttpStatus.OK).body(f);
 		}else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 }
 	
 	@PostMapping(path="/logout")
 	//logout doesn't need to return anything except status because the result is reflected in the session
-	public ResponseEntity<HttpStatus> logout(HttpSession sesh) {
+	public ResponseEntity<HttpStatus> logout() {
 		//invalidate session and return successful if logged in
 		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
 			sesh.invalidate();
@@ -65,11 +62,15 @@ public class LoginController {
 	}
 	
 	@PutMapping(path="/updateInfo")
-	public ResponseEntity<User> updateUser(User u, HttpSession sesh){
+	public ResponseEntity<User> updateUser(@RequestBody User u){
 		//update both the session-stored user info and the database entry
 		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
-			if (ls.updateUser(u)) {
-				User f = ls.getUser(u.getUsername());
+			System.out.println("User u (being used to fetch stuff" + u);
+			User f = ls.findUser(u.getUsername());
+			System.out.println("user before update :" + f );
+			f = u;
+			if (ls.saveUser(f)!=null) {
+				System.out.println("Updated user " + f);
 				return ResponseEntity.status(HttpStatus.ACCEPTED).body(f);
 			} else
 				//return current user without updating if failed (don't know when this would happen but can't hurt to handle it)
@@ -79,9 +80,9 @@ public class LoginController {
 	}
 	
 	@PostMapping(path="/register")
-	public ResponseEntity<User> addUser(User u, HttpSession sesh){
+	public ResponseEntity<User> addUser(@RequestBody User u){
 
-		if (ls.register(u)) {
+		if (ls.saveUser(u)!=null) {
 			sesh.setAttribute("user", u);
 			sesh.setAttribute("loggedin" , true);
 			//send back the user if successful
@@ -89,6 +90,8 @@ public class LoginController {
 		}else
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
+	
+	
 
 
 }

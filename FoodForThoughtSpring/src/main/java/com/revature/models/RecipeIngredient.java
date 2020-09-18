@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Component
 @Entity
-//@Table(name ="recipe_ingredient"
+@Table(name ="recipe_ingredient")
 public class RecipeIngredient {
 
 	@Id
@@ -30,7 +31,6 @@ public class RecipeIngredient {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ingredient_id")
-	@JsonBackReference
 	private Ingredient ingredient;
 
 	@Column(name = "ingredient_amount")

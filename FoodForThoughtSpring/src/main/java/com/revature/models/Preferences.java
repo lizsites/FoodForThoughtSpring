@@ -26,10 +26,10 @@ public class Preferences {
 	@Column(name = "user_diet")
 	private DietType dietType;
 
-	@Column(name = "min_calories")
+	@Column(name = "min_calories", nullable=true)
 	private int minCalories;
 
-	@Column(name = "max_calories")
+	@Column(name = "max_calories", nullable=true)
 	private int maxCalories;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "preference", cascade = CascadeType.ALL)
