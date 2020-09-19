@@ -1,74 +1,71 @@
-//package com.revature.controllers;
-//
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import com.revature.models.Recipe;
-//import com.revature.repositories.IRecipeDAO;
-//import com.revature.repositories.IUserDAO;
-//
-//@RestController
-//@RequestMapping(value="/recipe")
-//@CrossOrigin
-//public class RecipeController {
-//
-//	private IUserDAO uDao;
-//	private IRecipeDAO rDao;
-//	
-//	@Autowired
-//	public RecipeController(IUserDAO uDao, IRecipeDAO rDao) {
-//		super();
-//		this.uDao = uDao;
-//		this.rDao = rDao;
-//	}
-//	
-//	@GetMapping
-//	public ResponseEntity<List<Recipe>> getAll() {
-//		return ResponseEntity.status(HttpStatus.OK).body(rDao.findAll());
-//	}
-//	
-////	@GetMapping(value="/{id}")
-////	public ResponseEntity<Trainer> getTrainer(@PathVariable("id") int id){
-////		Optional<Trainer> o = tDao.findById(id);
-////		if(o.isPresent()) {
-////			Trainer t = o.get();
-////			return ResponseEntity.status(HttpStatus.OK).body(t);
-////		} else {
-////			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-////		}
-////	}
-////	
-////	@GetMapping(value="/trainer/{name}")
-////	public ResponseEntity<Trainer> getTrainerByName(@PathVariable("name") String name){
-////		Trainer t = tDao.findByName(name);
-////		if(t==null) {
-////			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-////		} else {
-////			return ResponseEntity.status(HttpStatus.OK).body(t);
-////		}	
-////	}
-////	
-////	@PostMapping
-////	public ResponseEntity<List<Trainer>> newTrainer(@RequestBody Trainer t){
-////		tDao.save(t);
-////		return ResponseEntity.status(HttpStatus.OK).body(tDao.findAll());
-////	}
-//	
-//	
-//	@PutMapping
-//	public  ResponseEntity<List<Trainer>> newPokemon(@RequestBody Pokemon p){
-//		pDao.save(p);
-//		return ResponseEntity.status(HttpStatus.OK).body(tDao.findAll());
-//	}
-//	
-//}
+package com.revature.controllers;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.revature.models.Recipe;
+import com.revature.repositories.IRecipeDAO;
+
+@RestController
+@RequestMapping(value = "/recipe")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class RecipeController {
+	
+	private IRecipeDAO rDao;
+
+	@Autowired
+	public RecipeController(IRecipeDAO rDao) {
+		super();
+		this.rDao = rDao;
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Recipe>> getAll() {
+		return ResponseEntity.status(HttpStatus.OK).body(rDao.findAll());
+	}
+	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Recipe> getById(@PathVariable("id") int id) {
+		Optional<Recipe> o = rDao.findById(id);
+		if(o.isPresent())
+		{
+			Recipe r = o.get();
+			return ResponseEntity.status(HttpStatus.OK).body(r);
+		}else {		
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+	}
+	
+	@PostMapping
+	public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe r){
+		if(r!=null)
+		{
+			rDao.save(r);
+			return ResponseEntity.status(HttpStatus.CREATED).body(r);
+		}else
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+
+	@PutMapping
+	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe r) {
+		if(r!=null)
+		{
+			rDao.save(r);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(r);
+		}else
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+
+}

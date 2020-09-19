@@ -23,7 +23,7 @@ import com.revature.models.User;
 import com.revature.services.LoginService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @ResponseBody
 public class LoginController {
 	
