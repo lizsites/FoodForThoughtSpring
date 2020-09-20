@@ -33,7 +33,7 @@ public class Steps {
 		
 		@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 		@JoinColumn(name="recipe_id")
-		@JsonBackReference
+		@JsonBackReference(value="steps-recipe")
 		private Recipe recipe;
 
 		public Steps() {
@@ -94,7 +94,7 @@ public class Steps {
 
 		@Override
 		public String toString() {
-			return "Steps [id=" + id + ", body=" + body + ", stepNum=" + stepNum + ", recipe=" + recipe + "]";
+			return "Steps [id=" + id + ", body=" + body + ", stepNum=" + stepNum + ", recipe=" + recipe.getId() + "]";
 		}
 
 		public int getId() {

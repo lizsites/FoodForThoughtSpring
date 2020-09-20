@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Component
 @Entity
@@ -35,7 +36,8 @@ public class Ingredient {
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="recipe_id")
-	@JsonBackReference
+//	@JsonBackReference(value="recipeIngred")
+	@JsonIgnore
 	private Recipe recipe;
 	
 	public Ingredient(int id, String name, int cals, Recipe recipe) {

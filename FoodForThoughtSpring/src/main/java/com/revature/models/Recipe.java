@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Component
 @Entity
@@ -37,16 +39,17 @@ public class Recipe {
 	String title;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
-	
+	//@JsonManagedReference(value="recipeIngred")
 	private List<Ingredient> ingredients;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name="user_id")
-	@JsonBackReference
+	//
+	@JsonIgnore
 	private User owner;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
-	
+	@JsonManagedReference(value="steps-recipe")
 	private List<Steps> recipeSteps;
 
 	public Recipe() {
@@ -134,7 +137,7 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", summary=" + summary + ", cals=" + cals + ", title=" + title + ", ingredients="
-				+ ingredients + ", owner=" + owner + ", steps=" + recipeSteps.size() + "]";
+				+ ingredients + ", owner=" + owner.getId() + ", steps=" + recipeSteps.size() + "]";
 	}
 
 	public int getId() {

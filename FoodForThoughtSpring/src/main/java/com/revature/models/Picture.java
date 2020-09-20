@@ -81,7 +81,7 @@ public class Picture {
 
 	@Override
 	public String toString() {
-		return "Picture [id=" + id + ", picture=" + imageAsBytea + ", user=" + user + "]";
+		return "Picture [id=" + id + ", picture=" + imageAsBytea + ", user=" + user.getId() + "]";
 	}	
 	
 	
