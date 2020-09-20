@@ -22,6 +22,7 @@ public class LoginService {
 		super();
 		this.userDAO = userDAO;
 	}
+	
 
 	public boolean login(User u) {
 		User f = userDAO.findByUsername(u.getUsername());
