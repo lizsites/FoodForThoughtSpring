@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,23 +33,24 @@ public class Ingredient {
 	@Column(name="ingredient_cals")
 	private int cals;
 	
-	@OneToMany(mappedBy="ingredient", cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="recipe_id")
 	@JsonBackReference
-	private List<RecipeIngredient> recipeIngredient;
+	private Recipe recipe;
 	
-	public Ingredient(int id, String name, int cals, List<RecipeIngredient> recipeIngredient) {
+	public Ingredient(int id, String name, int cals, Recipe recipe) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cals = cals;
-		this.recipeIngredient = recipeIngredient;
+		this.recipe = recipe;
 	}
 
-	public Ingredient(String name, int cals, List<RecipeIngredient> recipeIngredient) {
+	public Ingredient(String name, int cals, Recipe recipe) {
 		super();
 		this.name = name;
 		this.cals = cals;
-		this.recipeIngredient = recipeIngredient;
+		this.recipe = recipe;
 	}
 
 	
@@ -78,12 +82,12 @@ public class Ingredient {
 		this.cals = cals;
 	}
 	
-	public List<RecipeIngredient> getRecipeIngredient() {
-		return recipeIngredient;
+	public Recipe getRecipe() {
+		return recipe;
 	}
 
-	public void setRecipeIngredient(List<RecipeIngredient> recipeIngredient) {
-		this.recipeIngredient = recipeIngredient;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	@Override

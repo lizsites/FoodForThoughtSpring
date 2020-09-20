@@ -27,20 +27,20 @@ public class Recipe {
 	@Column(name="recipe_id")
 	private int id;
 
-	@Column(name="recipe_body")
-	private String body;
+	@Column(name="recipe_body", length=10000)
+	private String summary;
 	
 	@Column(name="recipe_cals")
-	private int cals;
+	private double cals;
 	
 	@Column(name="recipe_title", nullable=false)
 	String title;
 	
 	@OneToMany(mappedBy="recipe", fetch = FetchType.LAZY)
 	
-	private List<RecipeIngredient> recipeIngredient;
+	private List<Ingredient> ingredients;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name="user_id")
 	@JsonBackReference
 	private User owner;
@@ -53,25 +53,25 @@ public class Recipe {
 		super();
 	}
 
-	public Recipe(int id, String body, int cals, String title, List<RecipeIngredient> recipeIngredient, User owner,
+	public Recipe(int id, String summary, double cals, String title, List<Ingredient> ingredients, User owner,
 			List<Steps> step) {
 		super();
 		this.id = id;
-		this.body = body;
+		this.summary = summary;
 		this.cals = cals;
 		this.title = title;
-		this.recipeIngredient = recipeIngredient;
+		this.ingredients= ingredients;
 		this.owner = owner;
 		this.recipeSteps = step;
 	}
 
-	public Recipe(String body, int cals, String title, List<RecipeIngredient> recipeIngredient, User owner,
+	public Recipe(String summary, double cals, String title, List<Ingredient> ingredients, User owner,
 			List<Steps> step) {
 		super();
-		this.body = body;
+		this.summary = summary;
 		this.cals = cals;
 		this.title = title;
-		this.recipeIngredient = recipeIngredient;
+		this.ingredients= ingredients;
 		this.owner = owner;
 		this.recipeSteps = step;
 	}
@@ -80,11 +80,11 @@ public class Recipe {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((body == null) ? 0 : body.hashCode());
-		result = prime * result + cals;
+		result = prime * result + ((summary == null) ? 0 : summary.hashCode());
+		//result = prime * result + cals;
 		result = prime * result + id;
 		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
-		result = prime * result + ((recipeIngredient == null) ? 0 : recipeIngredient.hashCode());
+		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + ((recipeSteps == null) ? 0 : recipeSteps.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -99,10 +99,10 @@ public class Recipe {
 		if (getClass() != obj.getClass())
 			return false;
 		Recipe other = (Recipe) obj;
-		if (body == null) {
-			if (other.body != null)
+		if (summary == null) {
+			if (other.summary != null)
 				return false;
-		} else if (!body.equals(other.body))
+		} else if (!summary.equals(other.summary))
 			return false;
 		if (cals != other.cals)
 			return false;
@@ -113,10 +113,10 @@ public class Recipe {
 				return false;
 		} else if (!owner.equals(other.owner))
 			return false;
-		if (recipeIngredient == null) {
-			if (other.recipeIngredient != null)
+		if (ingredients == null) {
+			if (other.ingredients != null)
 				return false;
-		} else if (!recipeIngredient.equals(other.recipeIngredient))
+		} else if (!ingredients.equals(other.ingredients))
 			return false;
 		if (recipeSteps == null) {
 			if (other.recipeSteps != null)
@@ -133,8 +133,8 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", body=" + body + ", cals=" + cals + ", title=" + title + ", recipeIngredient="
-				+ recipeIngredient + ", owner=" + owner + ", steps=" + recipeSteps.size() + "]";
+		return "Recipe [id=" + id + ", summary=" + summary + ", cals=" + cals + ", title=" + title + ", ingredients="
+				+ ingredients + ", owner=" + owner + ", steps=" + recipeSteps.size() + "]";
 	}
 
 	public int getId() {
@@ -145,19 +145,19 @@ public class Recipe {
 		this.id = id;
 	}
 
-	public String getBody() {
-		return body;
+	public String getSummary() {
+		return summary;
 	}
 
-	public void setBody(String body) {
-		this.body = body;
+	public void setBody(String summary) {
+		this.summary = summary;
 	}
 
-	public int getCals() {
+	public double getCals() {
 		return cals;
 	}
 
-	public void setCals(int cals) {
+	public void setCals(double cals) {
 		this.cals = cals;
 	}
 
@@ -169,12 +169,12 @@ public class Recipe {
 		this.title = title;
 	}
 
-	public List<RecipeIngredient> getRecipeIngredient() {
-		return recipeIngredient;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setRecipeIngredient(List<RecipeIngredient> recipeIngredient) {
-		this.recipeIngredient = recipeIngredient;
+	public void setRecipeIngredient(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	public User getOwner() {
