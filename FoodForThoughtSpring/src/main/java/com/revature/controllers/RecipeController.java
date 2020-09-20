@@ -20,7 +20,7 @@ import com.revature.repositories.IRecipeDAO;
 
 @RestController
 @RequestMapping(value = "/recipe")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins="localhost:8090/food")
 public class RecipeController {
 	
 	private IRecipeDAO rDao;
