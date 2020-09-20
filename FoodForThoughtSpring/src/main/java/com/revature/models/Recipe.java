@@ -27,8 +27,8 @@ public class Recipe {
 	@Column(name="recipe_id")
 	private int id;
 
-	@Column(name="recipe_body")
-	private String body;
+	@Column(name="recipe_body", length=10000)
+	private String summary;
 	
 	@Column(name="recipe_cals")
 	private double cals;
@@ -40,7 +40,7 @@ public class Recipe {
 	
 	private List<Ingredient> ingredients;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name="user_id")
 	@JsonBackReference
 	private User owner;
@@ -53,11 +53,11 @@ public class Recipe {
 		super();
 	}
 
-	public Recipe(int id, String body, double cals, String title, List<Ingredient> ingredients, User owner,
+	public Recipe(int id, String summary, double cals, String title, List<Ingredient> ingredients, User owner,
 			List<Steps> step) {
 		super();
 		this.id = id;
-		this.body = body;
+		this.summary = summary;
 		this.cals = cals;
 		this.title = title;
 		this.ingredients= ingredients;
@@ -65,10 +65,10 @@ public class Recipe {
 		this.recipeSteps = step;
 	}
 
-	public Recipe(String body, double cals, String title, List<Ingredient> ingredients, User owner,
+	public Recipe(String summary, double cals, String title, List<Ingredient> ingredients, User owner,
 			List<Steps> step) {
 		super();
-		this.body = body;
+		this.summary = summary;
 		this.cals = cals;
 		this.title = title;
 		this.ingredients= ingredients;
@@ -80,7 +80,7 @@ public class Recipe {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((body == null) ? 0 : body.hashCode());
+		result = prime * result + ((summary == null) ? 0 : summary.hashCode());
 		//result = prime * result + cals;
 		result = prime * result + id;
 		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
@@ -99,10 +99,10 @@ public class Recipe {
 		if (getClass() != obj.getClass())
 			return false;
 		Recipe other = (Recipe) obj;
-		if (body == null) {
-			if (other.body != null)
+		if (summary == null) {
+			if (other.summary != null)
 				return false;
-		} else if (!body.equals(other.body))
+		} else if (!summary.equals(other.summary))
 			return false;
 		if (cals != other.cals)
 			return false;
@@ -133,7 +133,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", body=" + body + ", cals=" + cals + ", title=" + title + ", ingredients="
+		return "Recipe [id=" + id + ", summary=" + summary + ", cals=" + cals + ", title=" + title + ", ingredients="
 				+ ingredients + ", owner=" + owner + ", steps=" + recipeSteps.size() + "]";
 	}
 
@@ -145,12 +145,12 @@ public class Recipe {
 		this.id = id;
 	}
 
-	public String getBody() {
-		return body;
+	public String getSummary() {
+		return summary;
 	}
 
-	public void setBody(String body) {
-		this.body = body;
+	public void setBody(String summary) {
+		this.summary = summary;
 	}
 
 	public double getCals() {

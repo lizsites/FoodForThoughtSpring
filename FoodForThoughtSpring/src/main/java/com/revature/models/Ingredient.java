@@ -86,7 +86,7 @@ public class Ingredient {
 		return recipe;
 	}
 
-	public void setRecipeIngredient(Recipe recipe) {
+	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
 

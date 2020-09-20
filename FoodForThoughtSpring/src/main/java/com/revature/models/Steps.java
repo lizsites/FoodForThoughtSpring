@@ -25,7 +25,7 @@ public class Steps {
 		@Column(name="steps_id")
 		private int id;
 		
-		@Column(name = "body")
+		@Column(name = "body", length=1000)
 		private String body;
 		
 		@Column(name ="step_num")
