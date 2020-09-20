@@ -7,5 +7,4 @@ import com.revature.models.Picture;
 
 public interface IPicturesDAO extends JpaRepository<Picture, Integer> {
 	
-	void store(MultipartFile file);
 }
