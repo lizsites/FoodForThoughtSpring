@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 //import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,20 +22,23 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Component
 @Entity
-@Table(name="pictures")
+@Table(name = "pictures")
 public class Picture {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="picture_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "picture_id")
 	private int id;
-	
-	//@Lob
-	@Type(type = "org.hibernate.type.BinaryType")
+
+//	@Column(name = "picture_name")
+//	private String name;
+
+	@Lob
+//	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "picture")
 	private byte imageAsBytea[];
-	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id")
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
 	@JsonBackReference
 	private User user;
 
@@ -50,7 +54,7 @@ public class Picture {
 		this.imageAsBytea = image;
 		this.user = user;
 	}
-	
+
 	public Picture() {
 		super();
 	}
@@ -82,7 +86,6 @@ public class Picture {
 	@Override
 	public String toString() {
 		return "Picture [id=" + id + ", picture=" + imageAsBytea + ", user=" + user + "]";
-	}	
-	
-	
+	}
+
 }
