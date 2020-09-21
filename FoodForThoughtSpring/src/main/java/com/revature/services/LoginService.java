@@ -13,37 +13,31 @@ import com.revature.repositories.IUserDAO;
 
 @Service
 public class LoginService {
-	
+
 	private IUserDAO userDAO;
-	
-	
+
 	@Autowired
 	public LoginService(IUserDAO userDAO) {
 		super();
 		this.userDAO = userDAO;
 	}
-	
 
 	public boolean login(User u) {
 		User f = userDAO.findByUsername(u.getUsername());
 		System.out.println("User f " + f);
 		System.out.println("User u " + u);
-		if (u.getPassword().equals(f.getPassword())) {
-			return true;
-		} else {
-			return false;
-		}
+		return (u.getPassword().equals(f.getPassword()));
 	}
-	
 
 	public User saveUser(User u) {
 		return userDAO.save(u);
 	}
-	
+
 	public User findUser(String username) {
 		return userDAO.findByUsername(username);
 	}
-	
+
+	// can this be deleted?
 	private static String hash(String pass) {
 		try {
 			MessageDigest md;
@@ -54,7 +48,7 @@ public class LoginService {
 			return (myHash);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 		return null;
 
 	}

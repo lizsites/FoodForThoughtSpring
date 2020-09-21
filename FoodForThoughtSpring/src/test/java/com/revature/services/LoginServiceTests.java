@@ -1,11 +1,9 @@
 package com.revature.services;
 
-//spring boot uses JUnit Jupiter by default instead of JUnit 4. I imported the JUnit 4 dependency to avoid confusion
-//if this doesn't work with spring boot then we can switch back to the default, it's just different syntax
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.revature.models.User;
 import com.revature.repositories.IUserDAO;
@@ -15,12 +13,13 @@ class LoginServiceTests {
 	public static LoginService ls;
 	public static IUserDAO uDao;
 	public static User u;
-	@BeforeClass
+	
+	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		ls = new LoginService(uDao);
 		u = new User();
 		u.setUsername("Olivia");
 		u.setPassword("5B5921AA233DB59A0499718B5E69A165");
-		ls = new LoginService(uDao);
 	}
 
 	@Test
