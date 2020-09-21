@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.models.Ingredient;
 import com.revature.models.Recipe;
@@ -13,6 +14,7 @@ import com.revature.repositories.IRecipeDAO;
 import com.revature.repositories.IStepsDAO;
 import com.revature.repositories.IngredientDAO;
 
+@Service
 public class RecipeService {
 
 	// service class for saving/retrieving recipe information
