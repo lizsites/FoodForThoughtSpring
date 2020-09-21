@@ -32,8 +32,8 @@ public class Picture {
 //	@Column(name = "picture_name")
 //	private String name;
 
-	@Lob
-//	@Type(type = "org.hibernate.type.BinaryType")
+//	@Lob
+	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "picture")
 	private byte imageAsBytea[];
 
