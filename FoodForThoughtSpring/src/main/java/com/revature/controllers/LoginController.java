@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,9 +50,9 @@ public class LoginController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 }
 	
-	@PostMapping(path="/logout")
+	@GetMapping(path="/logout")
 	//logout doesn't need to return anything except status because the result is reflected in the session
-	public ResponseEntity<HttpStatus> logout() {
+	public ResponseEntity<HttpStatus> log_out() {
 		//invalidate session and return successful if logged in
 		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
 			sesh.invalidate();
