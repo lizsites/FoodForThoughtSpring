@@ -18,16 +18,17 @@ import com.revature.models.Picture;
 
 import com.revature.models.User;
 import com.revature.repositories.IPicturesDAO;
+import com.revature.services.PictureService;
 
 @Controller
 public class PictureController {
 
-	private IPicturesDAO picturesDAO;
+	private PictureService ps;
 	private HttpSession sess;
 
 	@Autowired
-	public PictureController(IPicturesDAO picturesDAO, HttpSession sess) {
-		this.picturesDAO = picturesDAO;
+	public PictureController(PictureService ps, HttpSession sess) {
+		this.ps = ps;
 		this.sess = sess;
 	}
 
@@ -44,7 +45,7 @@ public class PictureController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			picturesDAO.save(pic);
+			ps.savePicture(pic);
 			return ResponseEntity.status(HttpStatus.CREATED).body(pic);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -52,7 +53,7 @@ public class PictureController {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Picture> getById(@PathVariable("id") int id) {
-		Optional<Picture> pic = picturesDAO.findById(id);
+		Optional<Picture> pic = ps.findById(id);
 
 		if (pic.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(pic.get());
