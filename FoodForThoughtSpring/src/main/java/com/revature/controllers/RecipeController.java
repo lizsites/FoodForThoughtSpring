@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ import com.revature.services.RecipeService;
 @RequestMapping(value = "/recipe")
 @CrossOrigin(origins = "localhost:4200/recipe")
 public class RecipeController {
-
+	private Logger log;
 	private RecipeService rs;
 	private HttpSession sess;
 
@@ -74,7 +75,7 @@ public class RecipeController {
 				i.setRecipe(r);
 				rs.saveIngredient(i);
 			}
-
+			log.info("Recipe created: " + r);
 			return ResponseEntity.status(HttpStatus.CREATED).body(r);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -84,6 +85,7 @@ public class RecipeController {
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe r) {
 		if (r != null) {
 			rs.saveRecipe(r);
+			log.info("Recipe updated: " + r);
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(r);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
