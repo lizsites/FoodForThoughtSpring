@@ -42,6 +42,7 @@ public class LoginController {
 		System.out.println("User u being passed:" + u);
 		if (ls.login(u)) {
 			User f = ls.findUser(u.getUsername());
+			System.out.println("User f being set on session:" + f);
 			sesh.setAttribute("user", f);
 			sesh.setAttribute("loggedin" , true);
 			return ResponseEntity.status(HttpStatus.OK).body(f);
