@@ -40,7 +40,7 @@ public class LoginController {
 			System.out.println("User f being set on session:" + f);
 			sesh.setAttribute("user", f);
 			sesh.setAttribute("loggedin" , true);
-			log.info("User " + u.getUsername() + " logged in");
+			//log.info("User " + f.getUsername() + " logged in");
 			return ResponseEntity.status(HttpStatus.OK).body(f);
 		}else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

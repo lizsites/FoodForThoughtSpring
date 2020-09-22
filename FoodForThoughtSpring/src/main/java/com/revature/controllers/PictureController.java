@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +22,7 @@ import com.revature.models.Picture;
 
 import com.revature.models.User;
 import com.revature.repositories.IPicturesDAO;
+import com.revature.services.LoginService;
 import com.revature.services.PictureService;
 
 @RestController
@@ -30,11 +32,12 @@ public class PictureController {
 
 	private PictureService ps;
 	private HttpSession sess;
-
+	private LoginService login;
 	@Autowired
-	public PictureController(PictureService ps, HttpSession sess) {
+	public PictureController(PictureService ps, HttpSession sess, LoginService login) {
 		this.ps = ps;
 		this.sess = sess;
+		this.login = login;
 	}
 
 
@@ -46,9 +49,17 @@ public class PictureController {
 			
 			System.out.println("session being passed:" + sess);
 			System.out.println("Sessioned user right before uploading pic: " + u);
-			pic.setUser(u);
+			
 			try {
 				pic.setPicture(file.getBytes());
+				
+				//pic.setUser(u, true);
+				//List<Picture> userPics = u.getPictures();
+				//userPics.add(pic);
+				u.addPicture(pic, true);
+				//login.saveUser(u);
+				System.out.println("picture being added :" + pic);
+				System.out.println("user after adding pic" + u);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

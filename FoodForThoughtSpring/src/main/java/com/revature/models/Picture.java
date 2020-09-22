@@ -37,9 +37,9 @@ public class Picture {
 	@Column(name = "picture")
 	private byte imageAsBytea[];
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "user_id")
-	@JsonBackReference
+	@JsonBackReference(value="pictures")
 	private User user;
 
 	public Picture(int id, byte[] image, User user) {
@@ -79,13 +79,16 @@ public class Picture {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user, boolean add) {
 		this.user = user;
+		if(this.user != null && add) {
+			user.addPicture(this, false);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Picture [id=" + id + ", picture=" + imageAsBytea + ", user=" + user + "]";
+		return "Picture [id=" + id + ", picture=" + imageAsBytea + ", user=" + user.getId() + "]";
 	}
 
 }

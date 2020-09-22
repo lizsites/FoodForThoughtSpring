@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Component
 @Entity
@@ -37,8 +38,9 @@ public class User {
 	
 	private List<Recipe> recipes;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
+	@JsonManagedReference(value="pictures")
+	//@JoinColumn(name="picture_id", referencedColumnName="id")
 	private List<Picture> pictures;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -167,6 +169,15 @@ public class User {
 
 	public void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
+	}
+	
+	public void addPicture(Picture picture, boolean set) {
+		if(picture != null) {
+			getPictures().add(picture);
+			if (set) {
+				picture.setUser(this, false);
+			}
+		}
 	}
 
 	public Preferences getPreference() {
