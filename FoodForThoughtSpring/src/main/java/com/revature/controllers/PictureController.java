@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,19 +26,16 @@ import com.revature.services.PictureService;
 
 @RestController
 @RequestMapping(value = "/upload")
-@CrossOrigin(origins = "localhost:4200/upload")
+@CrossOrigin(origins = "localhost:8090/upload")
 public class PictureController {
-
+	//private Logger log;
 	private PictureService ps;
 	private HttpSession sess;
-	private LoginService login;
 	@Autowired
 	public PictureController(PictureService ps, HttpSession sess, LoginService login) {
 		this.ps = ps;
 		this.sess = sess;
-		this.login = login;
 	}
-
 
 	@PostMapping
 	public ResponseEntity<Picture> handleFileUpload(@RequestParam("file") MultipartFile file) {
@@ -49,21 +45,17 @@ public class PictureController {
 			
 			System.out.println("session being passed:" + sess);
 			System.out.println("Sessioned user right before uploading pic: " + u);
-			
+
 			try {
+				//file.getBytes throws IOException
 				pic.setPicture(file.getBytes());
-				
-				//pic.setUser(u, true);
-				//List<Picture> userPics = u.getPictures();
-				//userPics.add(pic);
-				u.addPicture(pic, true);
-				//login.saveUser(u);
-				System.out.println("picture being added :" + pic);
-				System.out.println("user after adding pic" + u);
+				//new implementation for service method savePicture combines setting up and saving the picture
+				ps.savePicture(u, pic);
+				//log.info("New picture uploaded by User " + u.getUsername());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			ps.savePicture(pic);
+			
 			return ResponseEntity.status(HttpStatus.CREATED).body(pic);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

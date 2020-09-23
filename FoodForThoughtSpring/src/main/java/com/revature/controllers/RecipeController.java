@@ -26,9 +26,9 @@ import com.revature.services.RecipeService;
 
 @RestController
 @RequestMapping(value = "/recipe")
-@CrossOrigin(origins = "localhost:4200/recipe")
+@CrossOrigin(origins = "localhost:8090/recipe")
 public class RecipeController {
-	private Logger log;
+	//private Logger log;
 	private RecipeService rs;
 	private HttpSession sess;
 
@@ -65,17 +65,13 @@ public class RecipeController {
 		if (r != null) {
 			User u = (User) sess.getAttribute("user");
 			System.out.println("Sessioned user right before setting recipe: " + u);
-			r.setOwner(u);
-			rs.saveRecipe(r);
-			for (Steps step : r.getRecipeStep()) {
-				step.setRecipe(r);
-				rs.saveStep(step);
-			}
-			for (Ingredient i : r.getIngredients()) {
-				i.setRecipe(r);
-				rs.saveIngredient(i);
-			}
-			log.info("Recipe created: " + r);
+			r.setOwner(u);		
+			//saving each step and ingredient to their tables is now done within saveRecipe
+			if(u.getUsername()!=null && rs.saveRecipe(r)) {
+				//log.info("Recipe created: " + r);
+			}else {
+				//log.info("User is "+ u.getUsername() + ": failed to create recipe");
+			}			
 			return ResponseEntity.status(HttpStatus.CREATED).body(r);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -85,7 +81,7 @@ public class RecipeController {
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe r) {
 		if (r != null) {
 			rs.saveRecipe(r);
-			log.info("Recipe updated: " + r);
+			//log.info("Recipe updated: " + r);
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(r);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

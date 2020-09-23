@@ -43,24 +43,17 @@ public class RecipeService {
 	}
 
 	public boolean saveRecipe(Recipe r) {
+		//when the recipe is updated, the changes should reflect in the steps and ingredients table
 		if (r != null) {
+			for (Steps step : r.getRecipeStep()) {
+				step.setRecipe(r);
+				sDAO.save(step);
+			}
+			for (Ingredient i : r.getIngredients()) {
+				i.setRecipe(r);
+				iDAO.save(i);
+			}
 			rDAO.save(r);
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean saveStep(Steps s) {
-		if (s != null) {
-			sDAO.save(s);
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean saveIngredient(Ingredient i) {
-		if (i != null) {
-			iDAO.save(i);
 			return true;
 		} else
 			return false;

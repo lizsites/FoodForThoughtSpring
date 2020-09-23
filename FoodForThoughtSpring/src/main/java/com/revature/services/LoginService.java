@@ -23,6 +23,7 @@ public class LoginService {
 	}
 
 	public boolean login(User u) {
+		//check if password is correct
 		User f = userDAO.findByUsername(u.getUsername());
 		System.out.println("User f " + f);
 		System.out.println("User u " + u);
@@ -30,26 +31,17 @@ public class LoginService {
 	}
 
 	public User saveUser(User u) {
-		return userDAO.save(u);
+		//save/update user info
+		if(u!=null)
+		{
+			System.out.println("Updated user " + u);
+			userDAO.save(u);
+		}
+		return u;
 	}
 
 	public User findUser(String username) {
+		//find user by username
 		return userDAO.findByUsername(username);
-	}
-
-	// can this be deleted?
-	private static String hash(String pass) {
-		try {
-			MessageDigest md;
-			md = MessageDigest.getInstance("MD5");
-
-			byte[] hashByte = md.digest(pass.getBytes(StandardCharsets.UTF_8));
-			String myHash = DatatypeConverter.printHexBinary(hashByte);
-			return (myHash);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-
 	}
 }
