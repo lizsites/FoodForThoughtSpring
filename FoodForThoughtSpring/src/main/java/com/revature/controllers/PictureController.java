@@ -26,7 +26,7 @@ import com.revature.services.PictureService;
 
 @RestController
 @RequestMapping(value = "/upload")
-@CrossOrigin(origins = "localhost:8090/upload")
+@CrossOrigin(origins = "*", allowedHeaders="*")
 public class PictureController {
 	//private Logger log;
 	private PictureService ps;
