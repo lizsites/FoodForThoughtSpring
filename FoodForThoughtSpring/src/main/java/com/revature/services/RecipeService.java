@@ -45,7 +45,7 @@ public class RecipeService {
 	public boolean saveRecipe(Recipe r) {
 		//when the recipe is updated, the changes should reflect in the steps and ingredients table
 		if (r != null) {
-			for (Steps step : r.getRecipeStep()) {
+			for (Steps step : r.getRecipeSteps()) {
 				step.setRecipe(r);
 				sDAO.save(step);
 			}

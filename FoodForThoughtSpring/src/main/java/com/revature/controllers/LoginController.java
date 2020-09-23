@@ -65,10 +65,11 @@ public class LoginController {
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		//update both the session-stored user info and the database entry
 		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
-			System.out.println("User u (being used to fetch stuff): " + u);
+			//System.out.println("User u (being used to fetch stuff): " + u);
 			User f = ls.findUser(u.getUsername());
 			System.out.println("user before update: " + f );
-			f = u;
+			f.setPassword(u.getPassword());
+			f.setPreference(u.getPreference());
 			if (ls.saveUser(f)!=null) {
 				//log.info("User updated: "+ f);
 				return ResponseEntity.status(HttpStatus.ACCEPTED).body(f);

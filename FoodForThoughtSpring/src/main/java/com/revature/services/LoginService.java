@@ -34,7 +34,7 @@ public class LoginService {
 		//save/update user info
 		if(u!=null)
 		{
-			System.out.println("Updated user " + u);
+			//System.out.println("Updated user " + u);
 			userDAO.save(u);
 		}
 		return u;

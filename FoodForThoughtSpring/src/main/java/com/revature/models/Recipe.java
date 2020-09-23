@@ -134,7 +134,7 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", summary=" + summary + ", cals=" + cals + ", title=" + title + ", ingredients="
-				+ ingredients + ", owner=" + owner + ", steps=" + recipeSteps.size() + "]";
+				+ ingredients + ", owner=" + owner.getId() + ", steps=" + recipeSteps.size() + "]";
 	}
 
 	public int getId() {
@@ -185,11 +185,11 @@ public class Recipe {
 		this.owner = owner;
 	}
 
-	public List<Steps> getRecipeStep() {
+	public List<Steps> getRecipeSteps() {
 		return recipeSteps;
 	}
 
-	public void setRecipeStep(List<Steps> step) {
+	public void setRecipeSteps(List<Steps> step) {
 		this.recipeSteps = step;
 	}
 	
