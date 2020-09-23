@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import com.revature.services.LoginService;
 @CrossOrigin(origins="localhost:8090/food")
 @ResponseBody
 public class LoginController {
-	//private Logger log;
+	private static Logger log = LogManager.getLogger(LoginController.class);
 	private LoginService ls;
 	
 	//inject login service
@@ -43,7 +44,7 @@ public class LoginController {
 			sesh.setAttribute("user", f);
 			System.out.println("Current User: " + sesh.getAttribute("user"));
 			sesh.setAttribute("loggedin" , true);
-			//log.info("User " + f.getUsername() + " logged in");
+			log.info("User " + f.getUsername() + " logged in");
 			return ResponseEntity.status(HttpStatus.OK).body(f);
 		}else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
