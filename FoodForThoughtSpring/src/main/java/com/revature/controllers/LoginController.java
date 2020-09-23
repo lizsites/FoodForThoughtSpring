@@ -53,13 +53,13 @@ public class LoginController {
 	@GetMapping(path="/logout")
 	public ResponseEntity<HttpStatus> logout() {
 		//invalidate session and return successful if logged in
-		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
+		//if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
 			System.out.println("Current User before logout: " + sesh.getAttribute("user"));
 			sesh.invalidate();
 			return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-		} else {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-		}
+		//} else {
+			//return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		//}
 	}
 	
 	@PutMapping(path="/updateInfo")
