@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.revature.models.Picture;
+import com.revature.models.User;
 
 public interface IPicturesDAO extends JpaRepository<Picture, Integer> {
 
-	Optional<Picture> findByUserName(String username);
+	Optional<Picture> findByUser(User u);
 	
 }

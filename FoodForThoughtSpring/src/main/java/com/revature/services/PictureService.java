@@ -13,10 +13,12 @@ import com.revature.repositories.IPicturesDAO;
 public class PictureService {
 	//service class for saving/retrieving pictures
 	private IPicturesDAO picDao;
+	private LoginService ls;
 	
 	@Autowired
-	public PictureService(IPicturesDAO picDao) {
+	public PictureService(IPicturesDAO picDao, LoginService ls) {
 		this.picDao = picDao;
+		this.ls = ls;
 	}
 	
 	public Optional<Picture> findById(int id) {
@@ -31,6 +33,7 @@ public class PictureService {
 	}
 
 	public Optional<Picture> findByUser(String username) {
-		return picDao.findByUserName(username);
+		User u = ls.findUser(username);
+		return picDao.findByUser(u);
 	}
 }
