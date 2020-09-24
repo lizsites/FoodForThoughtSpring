@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.revature.models.Picture;
@@ -26,8 +27,8 @@ import com.revature.services.LoginService;
 import com.revature.services.PictureService;
 
 @RestController
-@RequestMapping(value = "*")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders="*")
+@ResponseBody
 public class PictureController {
 	//private Logger log;
 	private PictureService ps;
