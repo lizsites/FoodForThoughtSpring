@@ -134,7 +134,7 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", summary=" + summary + ", cals=" + cals + ", title=" + title + ", ingredients="
-				+ ingredients + ", owner=" + owner.getId() + ", steps=" + recipeSteps.size() + "]";
+				+ ingredients  + ", steps=" + recipeSteps.size() + "]";
 	}
 
 	public int getId() {
