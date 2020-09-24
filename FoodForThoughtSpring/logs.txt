@@ -2679,3 +2679,47 @@ Mocking methods declared on non-public parent classes is not supported.
 2020-09-24 17:03:52.401  INFO 53091 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2020-09-24 17:03:52.402  INFO 53091 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2020-09-24 17:03:52.893  INFO 53091 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-09-24 17:28:16.233  INFO 53300 --- [main] com.revature.tests.LoginServiceTests     : Starting LoginServiceTests on Hazels-MBP.attlocal.net with PID 53300 (started by hazelblanchard in /Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring)
+2020-09-24 17:28:16.236  INFO 53300 --- [main] com.revature.tests.LoginServiceTests     : No active profile set, falling back to default profiles: default
+2020-09-24 17:28:17.389  INFO 53300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-09-24 17:28:17.485  INFO 53300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 6 JPA repository interfaces.
+2020-09-24 17:28:18.228  INFO 53300 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-24 17:28:18.298  INFO 53300 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-09-24 17:28:18.377  INFO 53300 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-09-24 17:28:18.592  INFO 53300 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-09-24 17:28:18.720  WARN 53300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-09-24 17:28:18.738  INFO 53300 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-09-24 17:28:19.858  INFO 53300 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-09-24 17:28:19.905  INFO 53300 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-09-24 17:28:22.509  INFO 53300 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-24 17:28:22.517  INFO 53300 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-09-24 17:28:22.647  INFO 53300 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-09-24 17:28:22.720  INFO 53300 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-09-24 17:28:23.339  INFO 53300 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-09-24 17:28:23.351  INFO 53300 --- [main] com.revature.tests.LoginServiceTests     : Started LoginServiceTests in 7.419 seconds (JVM running for 8.507)
+2020-09-24 17:28:23.819  INFO 53300 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-09-24 17:28:23.822  INFO 53300 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-09-24 17:28:23.824  INFO 53300 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-09-24 17:28:24.746  INFO 53300 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-09-24 17:35:58.061  INFO 53352 --- [main] com.revature.tests.LoginServiceTests     : Starting LoginServiceTests on Hazels-MBP.attlocal.net with PID 53352 (started by hazelblanchard in /Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring)
+2020-09-24 17:35:58.063  INFO 53352 --- [main] com.revature.tests.LoginServiceTests     : No active profile set, falling back to default profiles: default
+2020-09-24 17:35:58.999  INFO 53352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-09-24 17:35:59.093  INFO 53352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86ms. Found 6 JPA repository interfaces.
+2020-09-24 17:35:59.741  INFO 53352 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-24 17:35:59.801  INFO 53352 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-09-24 17:35:59.866  INFO 53352 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-09-24 17:36:00.054  INFO 53352 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-09-24 17:36:00.154  WARN 53352 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-09-24 17:36:00.199  INFO 53352 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-09-24 17:36:01.203  INFO 53352 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-09-24 17:36:01.245  INFO 53352 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-09-24 17:36:03.037  INFO 53352 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-24 17:36:03.045  INFO 53352 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-09-24 17:36:03.160  INFO 53352 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-09-24 17:36:03.210  INFO 53352 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-09-24 17:36:03.593  INFO 53352 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-09-24 17:36:03.606  INFO 53352 --- [main] com.revature.tests.LoginServiceTests     : Started LoginServiceTests in 5.782 seconds (JVM running for 6.791)
+2020-09-24 17:36:04.067  INFO 53352 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-09-24 17:36:04.068  INFO 53352 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-09-24 17:36:04.069  INFO 53352 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-09-24 17:36:04.680  INFO 53352 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

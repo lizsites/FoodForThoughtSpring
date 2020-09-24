@@ -1,8 +1,8 @@
-//still doesn't work, can't figure it out
+package com.revature.tests;
 
-package com.revature.services;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.*;  
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -30,7 +30,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.revature.FoodForThoughtSpringApplication;
-import com.revature.SpringRunner;
 import com.revature.controllers.LoginController;
 import com.revature.controllers.RecipeController;
 import com.revature.models.Picture;
@@ -43,6 +42,8 @@ import com.revature.repositories.IRecipeDAO;
 import com.revature.repositories.IStepsDAO;
 import com.revature.repositories.IUserDAO;
 import com.revature.repositories.IngredientDAO;
+import com.revature.services.LoginService;
+import com.revature.services.PictureService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -127,7 +128,7 @@ class LoginServiceTests {
 //	}
 
 	@Test
-	void testLogin() {
+	public void testLogin() {
 		System.out.println("User at beginning of testLogin() " + u);
 		doReturn(u).when(userDAO).findByUsername(u.getUsername());
 		System.out.println(ls.findUser(u.getUsername()));
@@ -136,7 +137,7 @@ class LoginServiceTests {
 		
 	}
 	@Test
-	void testFindUser() {
+	public void testFindUser() {
 		when(userDAO.findByUsername(u.getUsername())).thenReturn(u);
 		when(ls.findUser(u.getUsername())).thenReturn(u);
 		User f = ls.findUser(u.getUsername());
@@ -144,7 +145,7 @@ class LoginServiceTests {
 	}
 	
 	@Test
-	void testAddPicture() {
+	public void testAddPicture() {
 		System.out.println("Test addPicture()");
 		List<Picture> picList = u.getPictures();
 		Picture pic = new Picture();
