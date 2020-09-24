@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,21 @@ public class PictureService {
 		return picDao.findById(id);
 	}
 
-	public void savePicture(User u, Picture pic) {
+	public List<Picture> savePicture(User u, Picture pic) {
 		u.addPicture(pic, true);
 		System.out.println("picture being added :" + pic);
 		System.out.println("user after adding pic" + u);
 		picDao.save(pic);
+		
+		return picDao.findByUser(u);
 	}
 
 	public Optional<Picture> findByUser(String username) {
+		User u = ls.findUser(username);
+		return picDao.findByUser(u);
+	}
+	
+	public List<Picture> findAllByUser(String username) {
 		User u = ls.findUser(username);
 		return picDao.findByUser(u);
 	}
