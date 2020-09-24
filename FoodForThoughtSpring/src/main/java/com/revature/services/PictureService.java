@@ -29,4 +29,8 @@ public class PictureService {
 		System.out.println("user after adding pic" + u);
 		picDao.save(pic);
 	}
+
+	public Optional<Picture> findByUser(String username) {
+		return picDao.findByUserName(username);
+	}
 }

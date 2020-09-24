@@ -64,9 +64,11 @@ public class PictureController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Picture> getById(@PathVariable("id") int id) {
-		Optional<Picture> pic = ps.findById(id);
+	@GetMapping(value = "/download")
+	public ResponseEntity<Picture> getById(@RequestParam("username") String username) {
+		
+		User u = login.findUser(username);
+		Optional<Picture> pic = ps.findByUser(username);
 
 		if (pic.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(pic.get());
