@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import com.revature.services.LoginService;
 @CrossOrigin(origins="localhost:8090/food")
 @ResponseBody
 public class LoginController {
-	//private Logger log;
+	private Logger log = LogManager.getLogger(LoginController.class);
 	private LoginService ls;
 	
 	//inject login service
@@ -43,7 +44,7 @@ public class LoginController {
 			sesh.setAttribute("user", f);
 			System.out.println("Current User: " + sesh.getAttribute("user"));
 			sesh.setAttribute("loggedin" , true);
-			//log.info("User " + f.getUsername() + " logged in");
+			log.info("User " + f.getUsername() + " logged in");
 			return ResponseEntity.status(HttpStatus.OK).body(f);
 		}else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -71,10 +72,11 @@ public class LoginController {
 			f.setPassword(u.getPassword());
 			f.setPreference(u.getPreference());
 			if (ls.saveUser(f)!=null) {
-				//log.info("User updated: "+ f);
+				log.info("User updated: "+ f);
 				return ResponseEntity.status(HttpStatus.ACCEPTED).body(f);
 			} else
 				//return current user without updating if failed
+				log.info("User failed to update: "+ f);
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(u);
 		}else
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -87,7 +89,7 @@ public class LoginController {
 			
 			sesh.setAttribute("user", u);
 			sesh.setAttribute("loggedin" , true);
-			//log.info("User created: " + u);
+			log.info("New user registered: " + u);
 			//send back the user if successful
 			return ResponseEntity.status(HttpStatus.CREATED).body(u);
 		}else

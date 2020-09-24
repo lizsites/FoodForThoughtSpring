@@ -6,6 +6,9 @@ import java.util.Optional;
 
 
 import javax.servlet.http.HttpSession;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,35 +31,39 @@ import com.revature.services.PictureService;
 @RequestMapping(value = "/upload")
 @CrossOrigin(origins = "localhost:8090/upload")
 public class PictureController {
-	//private Logger log;
+	private Logger log = LogManager.getLogger(PictureController.class);
 	private PictureService ps;
+	private LoginService ls;
 	private HttpSession sess;
+	
 	@Autowired
-	public PictureController(PictureService ps, HttpSession sess, LoginService login) {
+	public PictureController(PictureService ps, HttpSession sess, LoginService ls) {
 		this.ps = ps;
 		this.sess = sess;
+		this.ls = ls;
 	}
 
 	@PostMapping
-	public ResponseEntity<Picture> handleFileUpload(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<User> handleFileUpload(@RequestParam("file") MultipartFile file) {
 		if (file != null) {
 			Picture pic = new Picture();
 			User u = (User) sess.getAttribute("user");
+			String username = u.getUsername();
 			
 			System.out.println("session being passed:" + sess);
 			System.out.println("Sessioned user right before uploading pic: " + u);
-
 			try {
 				//file.getBytes throws IOException
 				pic.setPicture(file.getBytes());
 				//new implementation for service method savePicture combines setting up and saving the picture
 				ps.savePicture(u, pic);
-				//log.info("New picture uploaded by User " + u.getUsername());
+				u = ls.findUser(username);
+				log.info("New picture uploaded by User " + username);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(pic);
+			return ResponseEntity.status(HttpStatus.CREATED).body(u);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
