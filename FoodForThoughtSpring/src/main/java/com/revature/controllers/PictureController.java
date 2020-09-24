@@ -32,17 +32,19 @@ public class PictureController {
 	//private Logger log;
 	private PictureService ps;
 	private HttpSession sess;
+	private LoginService login;
 	@Autowired
 	public PictureController(PictureService ps, HttpSession sess, LoginService login) {
 		this.ps = ps;
 		this.sess = sess;
+		this.login = login;
 	}
 
 	@PutMapping
-	public ResponseEntity<Picture> handleFileUpload(@RequestParam("file") MultipartFile file) {
-		if (file != null) {
+	public ResponseEntity<User> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) {
+		if (file != null && username != null) {
 			Picture pic = new Picture();
-			User u = (User) sess.getAttribute("user");
+			User u = login.findUser(username);
 			
 			System.out.println("session being passed:" + sess);
 			System.out.println("Sessioned user right before uploading pic: " + u);
@@ -57,7 +59,7 @@ public class PictureController {
 				e.printStackTrace();
 			}
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(pic);
+			return ResponseEntity.status(HttpStatus.CREATED).body(u);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
