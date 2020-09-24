@@ -65,7 +65,7 @@ public class RecipeController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Recipe> saveRecipe(@RequestBody recipeDTO recipe ) {
+	public ResponseEntity<User> saveRecipe(@RequestBody recipeDTO recipe ) {
 		if (recipe != null) {
 			System.out.println(recipe);
 			User u = ls.findUser(recipe.username);
@@ -79,7 +79,7 @@ public class RecipeController {
 			}else {
 				//log.info("User is "+ u.getUsername() + ": failed to create recipe");
 			}			
-			return ResponseEntity.status(HttpStatus.CREATED).body(r);
+			return ResponseEntity.status(HttpStatus.CREATED).body(u);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
