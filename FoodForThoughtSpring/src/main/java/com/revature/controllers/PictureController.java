@@ -65,7 +65,7 @@ public class PictureController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@GetMapping(path = "/download")
+	@PostMapping(path = "/download")
 	public ResponseEntity<List<Picture>> getById(@RequestParam("username") String username) {
 		
 //		User u = login.findUser(username);
