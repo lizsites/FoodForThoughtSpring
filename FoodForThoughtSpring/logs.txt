@@ -1891,3 +1891,6 @@ Caused by: java.lang.Error: Unresolved compilation problem:
 2020-09-23 23:29:38.419  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2020-09-23 23:29:38.425  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Started FoodForThoughtSpringApplication in 2.215 seconds (JVM running for 27316.26)
 2020-09-23 23:29:38.426  INFO 42221 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-09-23 23:44:21.842  INFO 42221 --- [http-nio-8090-exec-1] o.a.c.c.C.[.[localhost].[/food]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-09-23 23:44:21.843  INFO 42221 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-09-23 23:44:21.886  INFO 42221 --- [http-nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 42 ms
