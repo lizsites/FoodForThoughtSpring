@@ -26,7 +26,7 @@ import com.revature.services.LoginService;
 import com.revature.services.PictureService;
 
 @RestController
-@RequestMapping(value = "/upload")
+@RequestMapping(value = "*")
 @CrossOrigin
 public class PictureController {
 	//private Logger log;
@@ -40,7 +40,7 @@ public class PictureController {
 		this.login = login;
 	}
 
-	@PostMapping
+	@PostMapping(path="/upload")
 	public ResponseEntity<User> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) {
 		if (file != null && username != null) {
 			Picture pic = new Picture();
@@ -64,9 +64,11 @@ public class PictureController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Picture> getById(@PathVariable("id") int id) {
-		Optional<Picture> pic = ps.findById(id);
+	@GetMapping(path = "/download")
+	public ResponseEntity<Picture> getById(@RequestParam("username") String username) {
+		
+		User u = login.findUser(username);
+		Optional<Picture> pic = ps.findByUser(username);
 
 		if (pic.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(pic.get());
