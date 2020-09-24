@@ -66,13 +66,14 @@ public class PictureController {
 	}
 
 	@GetMapping(path = "/download")
-	public ResponseEntity<Picture> getById(@RequestParam("username") String username) {
+	public ResponseEntity<List<Picture>> getById(@RequestParam("username") String username) {
 		
-		User u = login.findUser(username);
-		Optional<Picture> pic = ps.findByUser(username);
+//		User u = login.findUser(username);
+//		Optional<Picture> pic = ps.findByUser(username);
+		List<Picture> pics = ps.findAllByUser(username);
 
-		if (pic.isPresent()) {
-			return ResponseEntity.status(HttpStatus.OK).body(pic.get());
+		if (!pics.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(pics);
 			//will this just return a byte stream? how to turn into pic?
 		} else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
