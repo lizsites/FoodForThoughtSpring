@@ -38,7 +38,7 @@ public class User {
 	
 	private List<Recipe> recipes;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {/*CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH*/ CascadeType.ALL})
 	@JsonManagedReference(value="pictures")
 	//@JoinColumn(name="picture_id", referencedColumnName="id")
 	private List<Picture> pictures;
