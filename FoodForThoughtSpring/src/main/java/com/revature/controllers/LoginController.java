@@ -65,7 +65,7 @@ public class LoginController {
 	@PutMapping(path="/updateInfo")
 	public ResponseEntity<User> updateUser(@RequestBody User u){
 		//update both the session-stored user info and the database entry
-		if (sesh != null && (boolean)sesh.getAttribute("loggedin")) {
+		if (u!=null) {
 			//System.out.println("User u (being used to fetch stuff): " + u);
 			User f = ls.findUser(u.getUsername());
 			System.out.println("user before update: " + f );
