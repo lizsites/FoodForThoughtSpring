@@ -35,10 +35,10 @@ public class PictureService {
 		return picDao.findByUser(u);
 	}
 
-	public Optional<Picture> findByUser(String username) {
-		User u = ls.findUser(username);
-		return picDao.findByUser(u);
-	}
+//	public Optional<Picture> findByUser(String username) {
+//		User u = ls.findUser(username);
+//		return picDao.findByUser(u);
+//	}
 	
 	public List<Picture> findAllByUser(String username) {
 		User u = ls.findUser(username);
