@@ -40,7 +40,7 @@ public class PictureController {
 		this.login = login;
 	}
 
-	@PutMapping
+	@PostMapping
 	public ResponseEntity<User> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) {
 		if (file != null && username != null) {
 			Picture pic = new Picture();
