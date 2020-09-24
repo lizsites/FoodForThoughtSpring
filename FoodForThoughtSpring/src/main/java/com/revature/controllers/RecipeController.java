@@ -22,6 +22,8 @@ import com.revature.models.Ingredient;
 import com.revature.models.Recipe;
 import com.revature.models.Steps;
 import com.revature.models.User;
+import com.revature.models.recipeDTO;
+import com.revature.services.LoginService;
 import com.revature.services.RecipeService;
 
 @RestController
@@ -30,13 +32,15 @@ import com.revature.services.RecipeService;
 public class RecipeController {
 	//private Logger log;
 	private RecipeService rs;
+	private LoginService ls;
 	private HttpSession sess;
 
 	@Autowired
-	public RecipeController(RecipeService rs, HttpSession sess) {
+	public RecipeController(RecipeService rs, HttpSession sess, LoginService ls) {
 		super();
 		this.rs = rs;
 		this.sess = sess;
+		this.ls = ls;
 	}
 
 	@GetMapping(value = "/all")
@@ -61,11 +65,14 @@ public class RecipeController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe r) {
-		if (r != null) {
-			User u = (User) sess.getAttribute("user");
+	public ResponseEntity<Recipe> saveRecipe(@RequestBody recipeDTO recipe ) {
+		if (recipe != null) {
+			System.out.println(recipe);
+			User u = ls.findUser(recipe.username);
 			System.out.println("Sessioned user right before setting recipe: " + u);
+			Recipe r = recipe.recipe;
 			r.setOwner(u);		
+			System.out.println("Recipe being saaved : " + r);
 			//saving each step and ingredient to their tables is now done within saveRecipe
 			if(u.getUsername()!=null && rs.saveRecipe(r)) {
 				//log.info("Recipe created: " + r);
