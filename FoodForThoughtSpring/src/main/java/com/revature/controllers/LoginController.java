@@ -20,7 +20,7 @@ import com.revature.models.User;
 import com.revature.services.LoginService;
 
 @RestController
-@CrossOrigin(origins="*", allowedHeaders="*")
+@CrossOrigin(value="*", allowedHeaders="*")
 @ResponseBody
 public class LoginController {
 	private static Logger log = LogManager.getLogger(LoginController.class);

@@ -26,7 +26,7 @@ import com.revature.services.RecipeService;
 
 @RestController
 @RequestMapping(value = "/recipe")
-@CrossOrigin(origins = "localhost:8090/recipe")
+@CrossOrigin(origins = "*", allowedHeaders="*")
 public class RecipeController {
 	//private Logger log;
 	private RecipeService rs;
