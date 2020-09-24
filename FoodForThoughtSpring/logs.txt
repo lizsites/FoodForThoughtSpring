@@ -1807,3 +1807,59 @@ Caused by: java.lang.Error: Unresolved compilation problem:
 2020-09-23 23:18:20.723  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2020-09-23 23:18:20.730  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Started FoodForThoughtSpringApplication in 2.369 seconds (JVM running for 26638.582)
 2020-09-23 23:18:20.732  INFO 42221 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-09-23 23:22:30.192  INFO 42221 --- [Thread-359] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-09-23 23:22:30.193  INFO 42221 --- [Thread-359] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-09-23 23:22:30.193  INFO 42221 --- [Thread-359] com.zaxxer.hikari.HikariDataSource       : HikariPool-46 - Shutdown initiated...
+2020-09-23 23:22:30.195  INFO 42221 --- [Thread-359] com.zaxxer.hikari.HikariDataSource       : HikariPool-46 - Shutdown completed.
+2020-09-23 23:22:30.351  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Starting FoodForThoughtSpringApplication on Hazels-MBP.attlocal.net with PID 42221 (/Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring/target/classes started by hazelblanchard in /Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring)
+2020-09-23 23:22:30.352  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : No active profile set, falling back to default profiles: default
+2020-09-23 23:22:30.593  INFO 42221 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-09-23 23:22:30.607  INFO 42221 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 6 JPA repository interfaces.
+2020-09-23 23:22:30.708  INFO 42221 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2020-09-23 23:22:30.708  INFO 42221 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-09-23 23:22:30.709  INFO 42221 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-09-23 23:22:30.713  INFO 42221 --- [restartedMain] o.a.c.c.C.[.[localhost].[/food]          : Initializing Spring embedded WebApplicationContext
+2020-09-23 23:22:30.714  INFO 42221 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 361 ms
+2020-09-23 23:22:30.803  INFO 42221 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-23 23:22:30.807  INFO 42221 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-09-23 23:22:30.812  INFO 42221 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Starting...
+2020-09-23 23:22:30.840  WARN 42221 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-09-23 23:22:31.603  INFO 42221 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Start completed.
+2020-09-23 23:22:31.604  INFO 42221 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-09-23 23:22:32.369  INFO 42221 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-23 23:22:32.370  INFO 42221 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-09-23 23:22:32.373  INFO 42221 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-09-23 23:22:32.391  INFO 42221 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-09-23 23:22:32.408  INFO 42221 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path '/food'
+2020-09-23 23:22:32.409  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-09-23 23:22:32.519  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-09-23 23:22:32.526  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Started FoodForThoughtSpringApplication in 2.22 seconds (JVM running for 26890.372)
+2020-09-23 23:22:32.528  INFO 42221 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-09-23 23:22:50.989  INFO 42221 --- [Thread-367] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-09-23 23:22:50.990  INFO 42221 --- [Thread-367] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-09-23 23:22:50.990  INFO 42221 --- [Thread-367] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Shutdown initiated...
+2020-09-23 23:22:50.995  INFO 42221 --- [Thread-367] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Shutdown completed.
+2020-09-23 23:22:51.174  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Starting FoodForThoughtSpringApplication on Hazels-MBP.attlocal.net with PID 42221 (/Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring/target/classes started by hazelblanchard in /Users/hazelblanchard/Documents/Training files/FoodForThoughtRetry/FoodForThoughtSpring/FoodForThoughtSpring)
+2020-09-23 23:22:51.174  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : No active profile set, falling back to default profiles: default
+2020-09-23 23:22:51.393  INFO 42221 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-09-23 23:22:51.406  INFO 42221 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 6 JPA repository interfaces.
+2020-09-23 23:22:51.499  INFO 42221 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2020-09-23 23:22:51.500  INFO 42221 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-09-23 23:22:51.500  INFO 42221 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-09-23 23:22:51.506  INFO 42221 --- [restartedMain] o.a.c.c.C.[.[localhost].[/food]          : Initializing Spring embedded WebApplicationContext
+2020-09-23 23:22:51.506  INFO 42221 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 331 ms
+2020-09-23 23:22:51.595  INFO 42221 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-09-23 23:22:51.601  INFO 42221 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-09-23 23:22:51.606  INFO 42221 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Starting...
+2020-09-23 23:22:51.636  WARN 42221 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-09-23 23:22:52.352  INFO 42221 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Start completed.
+2020-09-23 23:22:52.352  INFO 42221 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-09-23 23:22:53.098  INFO 42221 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-09-23 23:22:53.098  INFO 42221 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-09-23 23:22:53.102  INFO 42221 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-09-23 23:22:53.118  INFO 42221 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-09-23 23:22:53.134  INFO 42221 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path '/food'
+2020-09-23 23:22:53.135  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-09-23 23:22:53.232  INFO 42221 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-09-23 23:22:53.239  INFO 42221 --- [restartedMain] c.r.FoodForThoughtSpringApplication      : Started FoodForThoughtSpringApplication in 2.087 seconds (JVM running for 26911.084)
+2020-09-23 23:22:53.241  INFO 42221 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
