@@ -44,6 +44,7 @@ import com.revature.repositories.IUserDAO;
 import com.revature.repositories.IngredientDAO;
 import com.revature.services.LoginService;
 import com.revature.services.PictureService;
+import com.revature.services.RecipeService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -69,6 +70,9 @@ class LoginServiceTests {
 	
 	@InjectMocks
 	public static PictureService ps;
+	
+	@InjectMocks
+	public static RecipeService rs;
 	
 	
 	@Mock
@@ -170,7 +174,10 @@ class LoginServiceTests {
 	
 	
 	
-	
+	@Test
+	public void testAddRecipe() {
+		
+	}
 	
 	@AfterAll
 	static void tearDown() {

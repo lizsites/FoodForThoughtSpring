@@ -72,7 +72,9 @@ public class PictureController {
 //		User u = login.findUser(username);
 //		Optional<Picture> pic = ps.findByUser(username);
 		List<Picture> pics = ps.findAllByUser(username);
-
+		for (Picture picture : pics) {
+			System.out.println(picture);
+		}
 		if (!pics.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.OK).body(pics);
 			//will this just return a byte stream? how to turn into pic?
