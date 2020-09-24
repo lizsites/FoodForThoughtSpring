@@ -79,7 +79,7 @@ public class RecipeController {
 			}else {
 				//log.info("User is "+ u.getUsername() + ": failed to create recipe");
 			}			
-			return ResponseEntity.status(HttpStatus.CREATED).body(u);
+			return ResponseEntity.status(HttpStatus.CREATED).body(ls.findUser(u.getUsername()));
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
