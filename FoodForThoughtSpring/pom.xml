@@ -76,16 +76,16 @@
 </dependency>
 	</dependencies>
 
-	<!-- <build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build> -->
+	</build> 
 	
-	<build>
+	<!-- <build>
   <plugins>
     <plugin>
       <artifactId>maven-assembly-plugin</artifactId>
@@ -101,6 +101,6 @@
       </configuration>
     </plugin>
   </plugins>
-</build>
+</build> -->
 
 </project>
