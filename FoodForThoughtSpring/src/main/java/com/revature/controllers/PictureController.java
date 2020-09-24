@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.revature.models.Picture;
 
 import com.revature.models.User;
-import com.revature.repositories.IPicturesDAO;
 import com.revature.services.LoginService;
 import com.revature.services.PictureService;
 
@@ -48,9 +47,10 @@ public class PictureController {
 		if (file != null) {
 			Picture pic = new Picture();
 			User u = (User) sess.getAttribute("user");
+			System.out.println("session being passed:" + sess + u);
 			String username = u.getUsername();
 			
-			System.out.println("session being passed:" + sess);
+			
 			System.out.println("Sessioned user right before uploading pic: " + u);
 			try {
 				//file.getBytes throws IOException
@@ -68,7 +68,7 @@ public class PictureController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(path = "/download")
 	public ResponseEntity<Picture> getById(@PathVariable("id") int id) {
 		Optional<Picture> pic = ps.findById(id);
 
