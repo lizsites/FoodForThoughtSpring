@@ -76,7 +76,7 @@ public class PictureController {
 		List<byte[]> bodies = new ArrayList<byte[]>();
 	
 			bodies.add(pics.get(0).getPicture());
-			System.out.println(pics.get(0));
+			System.out.println(bodies.get(0));
 		if (!bodies.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.OK).body(bodies.get(0));
 			//will this just return a byte stream? how to turn into pic?
