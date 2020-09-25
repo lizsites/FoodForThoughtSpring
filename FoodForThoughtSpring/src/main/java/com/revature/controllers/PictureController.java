@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,16 +68,18 @@ public class PictureController {
 	}
 
 	@PostMapping(path = "/download")
-	public ResponseEntity<List<Picture>> getById(@RequestBody String username) {
+	public ResponseEntity<List<byte[]>> getById(@RequestBody String username) {
 		
 //		User u = login.findUser(username);
 //		Optional<Picture> pic = ps.findByUser(username);
 		List<Picture> pics = ps.findAllByUser(username);
+		List<byte[]> bodies = new ArrayList<byte[]>();
 		for (Picture picture : pics) {
 			System.out.println(picture);
+			bodies.add(picture.getPicture());
 		}
-		if (!pics.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.OK).body(pics);
+		if (!bodies.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(bodies);
 			//will this just return a byte stream? how to turn into pic?
 		} else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
