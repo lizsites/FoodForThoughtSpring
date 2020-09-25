@@ -3,8 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.revature.models.Ingredient;
 import com.revature.models.Recipe;
-import com.revature.models.Steps;
 import com.revature.models.User;
 import com.revature.models.recipeDTO;
 import com.revature.services.LoginService;
@@ -30,16 +26,14 @@ import com.revature.services.RecipeService;
 @RequestMapping(value = "/recipe")
 @CrossOrigin(origins = "*", allowedHeaders="*")
 public class RecipeController {
-	//private Logger log;
+	private Logger log = LogManager.getLogger(RecipeController.class);
 	private RecipeService rs;
 	private LoginService ls;
-	private HttpSession sess;
 
 	@Autowired
-	public RecipeController(RecipeService rs, HttpSession sess, LoginService ls) {
+	public RecipeController(RecipeService rs, LoginService ls) {
 		super();
 		this.rs = rs;
-		this.sess = sess;
 		this.ls = ls;
 	}
 
@@ -86,13 +80,13 @@ public class RecipeController {
 				}
 			} else {
 			r.setOwner(u);		
-			System.out.println("Recipe being saaved : " + r);
+			System.out.println("Recipe being saved : " + r);
 			}
 			//saving each step and ingredient to their tables is now done within saveRecipe
 			if(u.getUsername()!=null && rs.saveRecipe(r)) {
-				//log.info("Recipe created: " + r);
+				log.info("Recipe created: " + r);
 			}else {
-				//log.info("User is "+ u.getUsername() + ": failed to create recipe");
+				log.info("User is "+ u.getUsername() + ": failed to create recipe");
 			}
 			System.out.println("user right before being sent back " + ls.findUser(u.getUsername()));
 			return ResponseEntity.status(HttpStatus.CREATED).body(ls.findUser(u.getUsername()));
@@ -102,9 +96,10 @@ public class RecipeController {
 
 	@PutMapping
 	public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe r) {
+		//not used
 		if (r != null) {
 			rs.saveRecipe(r);
-			//log.info("Recipe updated: " + r);
+			log.info("Recipe updated: " + r);
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(r);
 		} else
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

@@ -72,7 +72,7 @@ public class LoginController {
 			f.setPassword(u.getPassword());
 			f.setPreference(u.getPreference());
 			if (ls.saveUser(f)!=null) {
-				//log.info("User updated: "+ f);
+				log.info("User updated: "+ f);
 				return ResponseEntity.status(HttpStatus.ACCEPTED).body(f);
 			} else
 				//return current user without updating if failed
@@ -88,7 +88,7 @@ public class LoginController {
 			
 			sesh.setAttribute("user", u);
 			sesh.setAttribute("loggedin" , true);
-			//log.info("User created: " + u);
+			log.info("User created: " + u);
 			//send back the user if successful
 			return ResponseEntity.status(HttpStatus.CREATED).body(u);
 		}else
