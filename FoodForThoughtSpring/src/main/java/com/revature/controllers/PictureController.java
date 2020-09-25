@@ -68,18 +68,17 @@ public class PictureController {
 	}
 
 	@PostMapping(path = "/download")
-	public ResponseEntity<List<byte[]>> getById(@RequestBody String username) {
+	public ResponseEntity<byte[]> getById(@RequestBody String username) {
 		
 //		User u = login.findUser(username);
 //		Optional<Picture> pic = ps.findByUser(username);
 		List<Picture> pics = ps.findAllByUser(username);
 		List<byte[]> bodies = new ArrayList<byte[]>();
-		for (Picture picture : pics) {
-			System.out.println(picture);
-			bodies.add(picture.getPicture());
-		}
+	
+			bodies.add(pics.get(0).getPicture());
+			System.out.println(pics.get(0));
 		if (!bodies.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.OK).body(bodies);
+			return ResponseEntity.status(HttpStatus.OK).body(bodies.get(0));
 			//will this just return a byte stream? how to turn into pic?
 		} else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
