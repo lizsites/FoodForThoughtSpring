@@ -32,10 +32,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 //import com.revature.FoodForThoughtSpringApplication;
 import com.revature.controllers.LoginController;
 import com.revature.controllers.RecipeController;
+import com.revature.models.Ingredient;
 import com.revature.models.Picture;
 import com.revature.models.Preferences;
 import com.revature.models.Preferences.DietType;
 import com.revature.models.Recipe;
+import com.revature.models.Steps;
 import com.revature.models.User;
 import com.revature.repositories.IPicturesDAO;
 import com.revature.repositories.IRecipeDAO;
@@ -55,6 +57,7 @@ class LoginServiceTests {
 	
 
 	public static User u;
+	public static Recipe r;
 	public static List<User> users;
 	
 	//public static TestEntityManager entityManager;
@@ -119,6 +122,8 @@ class LoginServiceTests {
 		u.setRecipes(new ArrayList<Recipe>());
 		u.setPictures(new ArrayList<Picture>());
 		u.setPreference(new Preferences(DietType.GLUTEN_FREE,0,0));
+		
+		
 		//System.out.println("u right before being tested" + u);
 		List<User> users = new ArrayList<User>();
 		users.add(u);
@@ -176,6 +181,26 @@ class LoginServiceTests {
 	
 	@Test
 	public void testAddRecipe() {
+		r = new Recipe();
+		System.out.println("Testing testAddRecipe()!!!!!!!!!!!!");
+		Steps step = new Steps();
+		Ingredient ingredient = new Ingredient();
+		List<Steps> steps = new ArrayList<Steps>();
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		steps.add(step);
+		ingredients.add(ingredient);
+		
+		doReturn(step).when(stepDAO).save(step);
+		doReturn(ingredient).when(ingredientDAO).save(ingredient);
+		doReturn(r).when(recipeDao).save(r);
+		
+		r.setId(99);
+		r.setBody("about water");
+		r.setCals(0);
+		r.setRecipeSteps(steps);
+		r.setRecipeIngredient(ingredients);
+		
+		assertTrue(rs.saveRecipe(r));
 		
 	}
 	

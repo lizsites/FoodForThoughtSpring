@@ -70,9 +70,24 @@ public class RecipeController {
 			System.out.println(recipe);
 			User u = ls.findUser(recipe.username);
 			System.out.println("Sessioned user right before setting recipe: " + u);
+			
 			Recipe r = recipe.recipe;
+			if (r.getId()!=0) {
+				Optional<Recipe> rec = rs.findById(r.getId());
+				if(rec.isPresent()) {
+					Recipe t = rec.get();
+					t.setOwner(u);
+					t.setRecipeIngredient(r.getIngredients());
+					t.setRecipeSteps(r.getRecipeSteps());
+					t.setTitle(r.getTitle());
+					t.setBody(r.getSummary());
+					rs.saveRecipe(t);
+					System.out.println("Recipe being updaated");
+				}
+			} else {
 			r.setOwner(u);		
 			System.out.println("Recipe being saaved : " + r);
+			}
 			//saving each step and ingredient to their tables is now done within saveRecipe
 			if(u.getUsername()!=null && rs.saveRecipe(r)) {
 				//log.info("Recipe created: " + r);
